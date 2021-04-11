@@ -1,0 +1,10 @@
+server:
+  port: 8088
+spring:
+  output:
+    ansi:
+      enabled:  always
+  servlet:
+    multipart:
+      maxFileSize: 50MB
+      maxRequestSize: 50MB

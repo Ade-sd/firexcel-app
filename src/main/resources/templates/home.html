@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<p class="h1">Firexcel Application</p>
+<form action="/uploadExcelFile" enctype="multipart/form-data" method="POST">
+  <label>   click on browse to choose your excel and then click on upload file button :</label>
+  <input type="file" name="file" accept=".xls,.xlsx"/> <input
+    type="submit" value="Upload file"/>
+</form>
+</body>
+</html>
