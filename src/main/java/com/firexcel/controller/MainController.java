@@ -1,24 +1,26 @@
 package com.firexcel.controller;
 
-import com.firexcel.service.ExcelUtils;
+import com.firexcel.service.ExcelService;
 import java.io.IOException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
 
 @Controller
 public class MainController {
 
   private String fileLocation;
 
-  private final ExcelUtils utils;
+  private final ExcelService service;
 
   @Autowired
-  public MainController(ExcelUtils utils) {
-    this.utils = utils;
+  public MainController(ExcelService service) {
+    this.service = service;
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/")
@@ -27,7 +29,8 @@ public class MainController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/uploadExcelFile")
-  public void uploadFile(MultipartFile file) throws IOException, InvalidFormatException {
-    utils.fireExcel(file);
+  public void uploadFile(MultipartFile file)
+      throws IOException, OpenXML4JException, ParserConfigurationException, SAXException {
+    service.readExcel(file);
   }
 }
